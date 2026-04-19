@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap")
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap")
 layer(base);
 
 @import "tailwindcss";
@@ -7,7 +7,7 @@ layer(base);
 
 @theme {
   --font-*: initial;
-  --font-outfit: Outfit, sans-serif;
+  --font-inter: Inter, sans-serif;
 
   --breakpoint-*: initial;
   --breakpoint-2xsm: 375px;
@@ -41,18 +41,18 @@ layer(base);
   --color-white: #ffffff;
   --color-black: #101828;
 
-  --color-brand-25: #f2f7ff;
-  --color-brand-50: #ecf3ff;
-  --color-brand-100: #dde9ff;
-  --color-brand-200: #c2d6ff;
-  --color-brand-300: #9cb9ff;
-  --color-brand-400: #7592ff;
-  --color-brand-500: #465fff;
-  --color-brand-600: #3641f5;
-  --color-brand-700: #2a31d8;
-  --color-brand-800: #252dae;
-  --color-brand-900: #262e89;
-  --color-brand-950: #161950;
+  --color-brand-25: #f0f8fc;
+  --color-brand-50: #e1f1f9;
+  --color-brand-100: #c3e3f3;
+  --color-brand-200: #93cbe5;
+  --color-brand-300: #58aed2;
+  --color-brand-400: #3498bc;
+  --color-brand-500: #2382aa;
+  --color-brand-600: #1d6e91;
+  --color-brand-700: #175977;
+  --color-brand-800: #12465f;
+  --color-brand-900: #0d3347;
+  --color-brand-950: #07202e;
 
   --color-blue-light-25: #f5fbff;
   --color-blue-light-50: #f0f9ff;
@@ -186,7 +186,7 @@ layer(base);
     cursor: pointer;
   }
   body {
-    @apply relative font-normal font-outfit z-1 bg-gray-50;
+    @apply relative font-normal font-inter z-1 bg-gray-50;
   }
 }
 
@@ -789,4 +789,34 @@ span.flatpickr-weekday,
 
 .simplebar-scrollbar.simplebar-visible:before {
   @apply opacity-100;
+}
+
+/* Sidebar nav — hidden scrollbar, thin on hover */
+.sidebar-nav {
+  scrollbar-width: none;
+}
+.sidebar-nav::-webkit-scrollbar {
+  width: 0px;
+}
+.sidebar-nav:hover {
+  scrollbar-width: thin;
+  scrollbar-color: #d1d5db transparent;
+}
+.sidebar-nav:hover::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-nav:hover::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-nav:hover::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 99px;
+}
+
+/* Main content scroll — hidden scrollbar so it never overlaps the rounded corner */
+.main-scroll {
+  scrollbar-width: none;
+}
+.main-scroll::-webkit-scrollbar {
+  display: none;
 }

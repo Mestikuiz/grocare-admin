@@ -1,59 +1,86 @@
-import {
-  ArrowDownIcon,
-  ArrowUpIcon,
-  BoxIconLine,
-  GroupIcon,
-} from "../../icons";
-import Badge from "../ui/badge/Badge";
+interface Props {
+  stats: any
+  loading: boolean
+}
 
-export default function EcommerceMetrics() {
+function StatCard({
+  label,
+  value,
+  today,
+  todayLabel = "today",
+  positive,
+}: {
+  label: string
+  value: string | number
+  today?: string | number
+  todayLabel?: string
+  positive?: boolean
+}) {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
-      {/* <!-- Metric Item Start --> */}
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-        <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-          <GroupIcon className="text-gray-800 size-6 dark:text-white/90" />
-        </div>
-
-        <div className="flex items-end justify-between mt-5">
-          <div>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Customers
-            </span>
-            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              3,782
-            </h4>
-          </div>
-          <Badge color="success">
-            <ArrowUpIcon />
-            11.01%
-          </Badge>
-        </div>
-      </div>
-      {/* <!-- Metric Item End --> */}
-
-      {/* <!-- Metric Item Start --> */}
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] md:p-6">
-        <div className="flex items-center justify-center w-12 h-12 bg-gray-100 rounded-xl dark:bg-gray-800">
-          <BoxIconLine className="text-gray-800 size-6 dark:text-white/90" />
-        </div>
-        <div className="flex items-end justify-between mt-5">
-          <div>
-            <span className="text-sm text-gray-500 dark:text-gray-400">
-              Orders
-            </span>
-            <h4 className="mt-2 font-bold text-gray-800 text-title-sm dark:text-white/90">
-              5,359
-            </h4>
-          </div>
-
-          <Badge color="error">
-            <ArrowDownIcon />
-            9.05%
-          </Badge>
-        </div>
-      </div>
-      {/* <!-- Metric Item End --> */}
+    <div className="bg-white rounded-lg border border-gray-200 p-5">
+      <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">{label}</p>
+      <p className="mt-2 text-2xl font-bold text-gray-900">{value}</p>
+      {today !== undefined && (
+        <p className={`mt-1 text-xs font-medium ${positive !== false ? "text-green-600" : "text-gray-400"}`}>
+          {typeof today === "number" && today > 0 ? "+" : ""}{today} {todayLabel}
+        </p>
+      )}
     </div>
-  );
+  )
+}
+
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-lg border border-gray-200 p-5 animate-pulse">
+      <div className="h-3 w-24 bg-gray-200 rounded" />
+      <div className="mt-2 h-7 w-20 bg-gray-200 rounded" />
+      <div className="mt-1 h-3 w-16 bg-gray-200 rounded" />
+    </div>
+  )
+}
+
+export default function EcommerceMetrics({ stats, loading }: Props) {
+  if (loading) {
+    return (
+      <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+        {[1, 2, 3, 4].map((i) => <SkeletonCard key={i} />)}
+      </div>
+    )
+  }
+
+  const pkr = (n: number) => `Rs. ${(n ?? 0).toLocaleString("en-PK")}`
+  const fmt = (n: number) => n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n ?? 0)
+
+  return (
+    <div className="grid grid-cols-2 gap-4 xl:grid-cols-4">
+      <StatCard
+        label="Total Revenue"
+        value={pkr(stats?.revenue?.total ?? 0)}
+        today={pkr(stats?.revenue?.today ?? 0)}
+        todayLabel="today"
+        positive
+      />
+      <StatCard
+        label="Total Orders"
+        value={fmt(stats?.orders?.total ?? 0)}
+        today={stats?.orders?.today ?? 0}
+        todayLabel="today"
+        positive
+      />
+      <StatCard
+        label="Customers"
+        value={fmt(stats?.users?.total ?? 0)}
+        today={stats?.users?.today ?? 0}
+        todayLabel="new"
+        positive
+      />
+      <StatCard
+        label="Products"
+        value={stats?.products?.total ?? 0}
+        today={stats?.products?.lowStock ?? 0}
+        todayLabel="low stock"
+        positive={false}
+      />
+    </div>
+  )
 }

@@ -1,36 +1,28 @@
-import { SidebarProvider, useSidebar } from "../context/SidebarContext";
+import { SidebarProvider } from "../context/SidebarContext";
 import { Outlet } from "react-router";
 import AppHeader from "./AppHeader";
-import Backdrop from "./Backdrop";
 import AppSidebar from "./AppSidebar";
-
-const LayoutContent: React.FC = () => {
-  const { isExpanded, isHovered, isMobileOpen } = useSidebar();
-
-  return (
-    <div className="min-h-screen xl:flex">
-      <div>
-        <AppSidebar />
-        <Backdrop />
-      </div>
-      <div
-        className={`flex-1 transition-all duration-300 ease-in-out ${
-          isExpanded || isHovered ? "lg:ml-[290px]" : "lg:ml-[90px]"
-        } ${isMobileOpen ? "ml-0" : ""}`}
-      >
-        <AppHeader />
-        <div className="p-4 mx-auto max-w-(--breakpoint-2xl) md:p-6">
-          <Outlet />
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const AppLayout: React.FC = () => {
   return (
     <SidebarProvider>
-      <LayoutContent />
+      {/* Dark bg shows through rounded corners */}
+      <div className="h-screen overflow-hidden" style={{ background: "#1A1A1A" }}>
+        <AppHeader />
+        <AppSidebar />
+        {/* Content — ml for sidebar, pt for header, fills remaining height */}
+        <div className="lg:ml-[240px] pt-14 h-screen">
+          {/* Rounded corner wrapper — overflow-hidden clips scrollbar inside the curve */}
+          <div className="h-full rounded-tr-2xl overflow-hidden" style={{ background: "#F6F7F7" }}>
+            {/* Actual scroll container — scrollbar hidden so it never touches the corner */}
+            <div className="h-full overflow-y-auto main-scroll">
+              <main className="p-6">
+                <Outlet />
+              </main>
+            </div>
+          </div>
+        </div>
+      </div>
     </SidebarProvider>
   );
 };
