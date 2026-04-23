@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Trash2 } from "lucide-react";
 import { useToast } from "../../context/ToastContext";
 import { api, BASE_MEDIA } from "../../api/client";
 import ImageDropzone from "../../components/ui/ImageDropzone";
@@ -265,7 +266,7 @@ export default function Brands() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-sm p-6">
             <div className="text-center mb-5">
-              <div className="text-5xl mb-3">🗑️</div>
+              <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-3 mx-auto"><Trash2 size={28} className="text-red-400" /></div>
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">Delete Brand</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">This action cannot be undone. Products linked to this brand may be affected.</p>
             </div>

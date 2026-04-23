@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Image as ImageIcon, Trash2 } from "lucide-react";
 import { useToast } from "../../context/ToastContext";
 import { api, BASE_MEDIA } from "../../api/client";
 import ImageDropzone from "../../components/ui/ImageDropzone";
@@ -106,7 +107,7 @@ export default function Banners() {
         </div>
       ) : banners.length === 0 ? (
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm py-20 text-center">
-          <div className="text-5xl mb-3">🖼️</div>
+          <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center mb-3 mx-auto"><ImageIcon size={28} className="text-gray-300" /></div>
           <p className="text-gray-400 text-sm">No banners yet. Add your first banner.</p>
         </div>
       ) : (
@@ -121,7 +122,7 @@ export default function Banners() {
                 {banner.image ? (
                   <img src={banner.image} alt={banner.title} className="w-full h-full object-cover" />
                 ) : (
-                  <div className="flex items-center justify-center h-full text-gray-300 text-4xl">🖼️</div>
+                  <div className="flex items-center justify-center h-full"><ImageIcon size={32} className="text-gray-200" /></div>
                 )}
                 {/* Sort order badge */}
                 <div className="absolute top-2 left-2 bg-black/50 text-white text-xs px-2 py-0.5 rounded-lg font-mono">
@@ -268,7 +269,7 @@ export default function Banners() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl w-full max-w-sm p-6">
             <div className="text-center mb-5">
-              <div className="text-5xl mb-3">🗑️</div>
+              <div className="w-14 h-14 rounded-2xl bg-red-50 flex items-center justify-center mb-3 mx-auto"><Trash2 size={28} className="text-red-400" /></div>
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">Delete Banner</h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">This banner will be permanently removed from the app.</p>
             </div>

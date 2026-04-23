@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Package } from "lucide-react";
 import { api } from "../../api/client";
 import { useToast } from "../../context/ToastContext";
 
@@ -245,7 +246,7 @@ export default function CreateOrderModal({ onClose, onCreated }: Props) {
                       <button key={p.id} onClick={() => addToCart(p)}
                         className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 text-left border-b border-gray-50 last:border-0">
                         <div className="w-10 h-10 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0 flex items-center justify-center">
-                          {p.images?.[0] ? <img src={p.images[0]} className="w-full h-full object-cover" /> : <span className="text-lg">📦</span>}
+                          {p.images?.[0] ? <img src={p.images[0]} className="w-full h-full object-cover" /> : <Package size={18} className="text-gray-300" />}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-gray-800 truncate">{p.name}</p>
@@ -266,7 +267,7 @@ export default function CreateOrderModal({ onClose, onCreated }: Props) {
                     {cartItems.map(({ product: p, qty }) => (
                       <div key={p.id} className="flex items-center gap-3 px-4 py-3 border-b border-gray-50 last:border-0">
                         <div className="w-10 h-10 rounded-lg bg-gray-100 overflow-hidden flex-shrink-0 flex items-center justify-center">
-                          {p.images?.[0] ? <img src={p.images[0]} className="w-full h-full object-cover" /> : <span className="text-lg">📦</span>}
+                          {p.images?.[0] ? <img src={p.images[0]} className="w-full h-full object-cover" /> : <Package size={18} className="text-gray-300" />}
                         </div>
                         <div className="flex-1 min-w-0">
                           <p className="text-sm font-medium text-gray-800 truncate">{p.name}</p>

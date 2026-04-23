@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
-import { TrendingUp, ShoppingBag, BarChart2, Truck } from "lucide-react";
+import { TrendingUp, ShoppingBag, BarChart2, Truck, Building2, CreditCard, Package } from "lucide-react";
 import { api } from "../../api/client";
 
 const PERIOD_OPTIONS = [
@@ -303,7 +303,7 @@ export default function Analytics() {
             <div className="h-[240px] flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1D6E91]"></div></div>
           ) : cityNames.length === 0 ? (
             <div className="h-[240px] flex flex-col items-center justify-center text-gray-400">
-              <div className="text-4xl mb-2">🏙️</div>
+              <Building2 size={36} className="mb-2 text-gray-300" />
               <p className="text-sm">No city data yet</p>
             </div>
           ) : (
@@ -324,7 +324,7 @@ export default function Analytics() {
             <div className="h-[200px] flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#2382AA]"></div></div>
           ) : paymentValues.length === 0 ? (
             <div className="h-[200px] flex flex-col items-center justify-center text-gray-400">
-              <div className="text-4xl mb-2">💳</div>
+              <CreditCard size={36} className="mb-2 text-gray-300" />
               <p className="text-sm">No payment data</p>
             </div>
           ) : (
@@ -357,7 +357,7 @@ export default function Analytics() {
             <div className="h-[200px] flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1D6E91]"></div></div>
           ) : statusValues.length === 0 ? (
             <div className="h-[200px] flex flex-col items-center justify-center text-gray-400">
-              <div className="text-4xl mb-2">📊</div>
+              <BarChart2 size={36} className="mb-2 text-gray-300" />
               <p className="text-sm">No status data</p>
             </div>
           ) : (
@@ -392,7 +392,7 @@ export default function Analytics() {
             </div>
           ) : topProducts.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-16 text-gray-400">
-              <div className="text-4xl mb-2">📦</div>
+              <Package size={36} className="mb-2 text-gray-300" />
               <p className="text-sm">No sales data yet</p>
             </div>
           ) : (
@@ -415,7 +415,7 @@ export default function Analytics() {
                         <div className="flex items-center gap-3">
                           {p.images?.[0]
                             ? <img src={p.images[0]} className="w-9 h-9 rounded-xl object-cover border border-gray-100" />
-                            : <div className="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center text-base">📦</div>
+                            : <div className="w-9 h-9 rounded-xl bg-gray-100 dark:bg-gray-700 flex items-center justify-center"><Package size={18} className="text-gray-300" /></div>
                           }
                           <div>
                             <div className="font-medium text-gray-800 dark:text-white text-sm">{p.name}</div>

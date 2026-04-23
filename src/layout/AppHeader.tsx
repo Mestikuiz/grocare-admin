@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Link, useNavigate } from "react-router";
+import { Package, ShoppingCart } from "lucide-react";
 import { useSidebar } from "../context/SidebarContext";
 import NotificationDropdown from "../components/header/NotificationDropdown";
 import UserDropdown from "../components/header/UserDropdown";
@@ -128,7 +129,7 @@ function GlobalSearch() {
                   className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition text-left">
                   {item.image
                     ? <img src={item.image} className="w-8 h-8 rounded-lg object-cover border border-gray-100 flex-shrink-0" />
-                    : <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center text-sm flex-shrink-0">📦</div>
+                    : <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center flex-shrink-0"><Package size={16} className="text-gray-400" /></div>
                   }
                   <div className="min-w-0">
                     <div className="text-sm font-medium text-gray-800 truncate">{item.title}</div>
@@ -144,7 +145,7 @@ function GlobalSearch() {
               {orders.map(item => (
                 <button key={item.id} onClick={() => handleSelect(item)}
                   className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-gray-50 transition text-left">
-                  <div className="w-8 h-8 rounded-lg bg-[#2382AA]/10 flex items-center justify-center text-sm flex-shrink-0">🛒</div>
+                  <div className="w-8 h-8 rounded-lg bg-[#2382AA]/10 flex items-center justify-center flex-shrink-0"><ShoppingCart size={16} className="text-[#2382AA]" /></div>
                   <div className="min-w-0">
                     <div className="text-sm font-medium text-gray-800">{item.title}</div>
                     <div className="text-xs text-gray-400">{item.sub}</div>

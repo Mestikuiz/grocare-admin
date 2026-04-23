@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Package } from "lucide-react";
 import { api } from "../../api/client";
 
 export default function Reports() {
@@ -122,7 +123,7 @@ export default function Reports() {
                 {stats.topProducts.map((p: any, i: number) => (
                   <div key={p.id} className="flex items-center gap-4 px-6 py-3 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
                     <span className="w-8 text-center text-lg font-bold text-gray-300">#{i + 1}</span>
-                    {p.images?.[0] ? <img src={p.images[0]} className="w-10 h-10 rounded-xl object-cover border border-gray-100" /> : <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">📦</div>}
+                    {p.images?.[0] ? <img src={p.images[0]} className="w-10 h-10 rounded-xl object-cover border border-gray-100" /> : <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center"><Package size={18} className="text-gray-300" /></div>}
                     <div className="flex-1">
                       <div className="font-medium text-gray-800 dark:text-white">{p.name}</div>
                       <div className="text-xs text-gray-400">{p.totalSold} units sold</div>

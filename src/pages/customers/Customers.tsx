@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Coins } from "lucide-react";
 import { useToast } from "../../context/ToastContext";
 import { api } from "../../api/client";
 
@@ -198,7 +199,7 @@ export default function Customers() {
                     {/* Coins */}
                     <td className="px-5 py-3 text-center">
                       <span className={`text-sm font-semibold ${c.coins > 0 ? "text-yellow-600" : "text-gray-400"}`}>
-                        {c.coins > 0 ? `🪙 ${c.coins}` : "—"}
+                        {c.coins > 0 ? <span className="flex items-center gap-1 justify-center"><Coins size={13} className="text-yellow-500" />{c.coins}</span> : "—"}
                       </span>
                     </td>
                     {/* Joined */}

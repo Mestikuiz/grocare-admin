@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Package } from "lucide-react";
 import { useToast } from "../../context/ToastContext";
 import { useParams, Link } from "react-router";
 import { api } from "../../api/client";
@@ -201,7 +202,7 @@ export default function OrderDetail() {
                   <div className="w-14 h-14 rounded-lg border border-gray-100 bg-gray-50 overflow-hidden flex-shrink-0 flex items-center justify-center">
                     {item.product?.images?.[0]
                       ? <img src={item.product.images[0]} alt={item.product.name} className="w-full h-full object-cover" />
-                      : <span className="text-2xl opacity-30">📦</span>
+                      : <Package size={22} className="text-gray-200" />
                     }
                   </div>
                   <div className="flex-1 min-w-0">

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Building2, Trash2 } from "lucide-react";
 import { useToast } from "../../context/ToastContext";
 import { api } from "../../api/client";
 
@@ -111,7 +112,7 @@ export default function Cities() {
         </div>
       ) : filtered.length === 0 ? (
         <div className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-100 dark:border-gray-700 shadow-sm py-20 text-center">
-          <div className="text-5xl mb-3">🏙️</div>
+          <div className="w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center mb-3 mx-auto"><Building2 size={28} className="text-gray-300" /></div>
           <p className="text-gray-400 text-sm">No cities found. Add your first delivery city.</p>
         </div>
       ) : (
@@ -123,7 +124,7 @@ export default function Cities() {
             >
               {/* City card top */}
               <div className={`h-20 flex items-center justify-center ${city.isActive ? "bg-gradient-to-br from-[#2382AA]/10 to-[#2382AA]/10" : "bg-gray-100 dark:bg-gray-700/50"}`}>
-                <span className="text-4xl">🏙️</span>
+                <Building2 size={32} className="text-[#2382AA]/40" />
               </div>
 
               {/* Info */}

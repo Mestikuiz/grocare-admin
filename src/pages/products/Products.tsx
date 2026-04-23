@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
+import { Package } from "lucide-react";
 import { api, BASE_MEDIA } from "../../api/client";
 
 const PAGE_SIZES = [20, 50, 100];
@@ -269,7 +270,7 @@ export default function Products() {
                           <div className="w-10 h-10 rounded-lg border border-gray-100 bg-gray-50 overflow-hidden flex-shrink-0 flex items-center justify-center">
                             {img
                               ? <img src={img} alt={p.name} className="w-full h-full object-cover" />
-                              : <span className="text-lg opacity-30">📦</span>
+                              : <Package size={18} className="text-gray-200" />
                             }
                           </div>
                           <div className="min-w-0">

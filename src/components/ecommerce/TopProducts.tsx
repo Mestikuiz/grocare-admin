@@ -1,4 +1,5 @@
 import { Link } from "react-router"
+import { Package } from "lucide-react"
 import { BASE_MEDIA } from "../../api/client"
 
 interface Props {
@@ -50,7 +51,7 @@ export default function TopProducts({ products, loading }: Props) {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <span className="text-lg">📦</span>
+                  <Package size={18} className="text-gray-300" />
                 )}
               </div>
               <div className="flex-1 min-w-0">
