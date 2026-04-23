@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
+import { TrendingUp, ShoppingBag, BarChart2, Truck } from "lucide-react";
 import { api } from "../../api/client";
 
 const PERIOD_OPTIONS = [
@@ -169,9 +170,10 @@ export default function Analytics() {
             value: kpis ? `Rs. ${kpis.revenue.toLocaleString()}` : "—",
             trend: kpis?.revenueTrend,
             sub: "vs previous period",
-            icon: "💰",
+            icon: <TrendingUp size={20} />,
             gradient: "from-[#2382AA]/10 to-[#1D6E91]/10",
             iconBg: "bg-[#2382AA]/10",
+            iconColor: "text-[#2382AA]",
             text: "text-[#2382AA]",
           },
           {
@@ -179,9 +181,10 @@ export default function Analytics() {
             value: kpis ? kpis.orders.toLocaleString() : "—",
             trend: kpis?.ordersTrend,
             sub: "vs previous period",
-            icon: "📦",
+            icon: <ShoppingBag size={20} />,
             gradient: "from-blue-500/10 to-cyan-500/10",
             iconBg: "bg-blue-500/10",
+            iconColor: "text-blue-600",
             text: "text-blue-600",
           },
           {
@@ -189,9 +192,10 @@ export default function Analytics() {
             value: kpis ? `Rs. ${kpis.avgOrderValue.toLocaleString()}` : "—",
             trend: kpis?.avgOrderTrend,
             sub: "per order",
-            icon: "📊",
+            icon: <BarChart2 size={20} />,
             gradient: "from-purple-500/10 to-pink-500/10",
             iconBg: "bg-purple-500/10",
+            iconColor: "text-purple-600",
             text: "text-purple-600",
           },
           {
@@ -199,14 +203,15 @@ export default function Analytics() {
             value: breakdown ? `Rs. ${breakdown.deliveryFees.toLocaleString()}` : "—",
             trend: null,
             sub: `Service: Rs. ${breakdown?.serviceFees?.toLocaleString() ?? 0}`,
-            icon: "🛵",
+            icon: <Truck size={20} />,
             gradient: "from-green-500/10 to-emerald-500/10",
             iconBg: "bg-green-500/10",
+            iconColor: "text-green-600",
             text: "text-green-600",
           },
         ].map(card => (
           <div key={card.label} className={`bg-gradient-to-br ${card.gradient} rounded-2xl border border-gray-100 dark:border-gray-700 p-5 bg-white dark:bg-gray-800`}>
-            <div className={`w-10 h-10 ${card.iconBg} rounded-xl flex items-center justify-center text-lg mb-3`}>
+            <div className={`w-10 h-10 ${card.iconBg} rounded-xl flex items-center justify-center mb-3 ${card.iconColor}`}>
               {card.icon}
             </div>
             {loading ? (
