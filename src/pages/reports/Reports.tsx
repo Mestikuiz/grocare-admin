@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Package } from "lucide-react";
+import { TrendingUp, Package, BarChart2, Trophy } from "lucide-react";
 import { api } from "../../api/client";
 
 export default function Reports() {
@@ -68,13 +68,13 @@ export default function Reports() {
           {/* Summary Cards */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { label: "Total Revenue", value: `Rs. ${totalRevenue.toLocaleString()}`, icon: "💰", color: "bg-gradient-to-br from-[#2382AA] to-[#1D6E91] text-white" },
-              { label: "Total Orders", value: totalOrders.toLocaleString(), icon: "📦", color: "bg-[#2382AA] text-white" },
-              { label: "Avg Order Value", value: `Rs. ${Math.round(avgOrderValue).toLocaleString()}`, icon: "📊", color: "bg-gradient-to-br from-[#2382AA] to-[#4F46E5] text-white" },
-              { label: "Best Day Revenue", value: bestDay ? `Rs. ${bestDay.revenue.toLocaleString()}` : "—", icon: "🏆", color: "bg-gradient-to-br from-green-500 to-emerald-600 text-white" },
+              { label: "Total Revenue", value: `Rs. ${totalRevenue.toLocaleString()}`, icon: <TrendingUp size={22} />, color: "bg-gradient-to-br from-[#2382AA] to-[#1D6E91] text-white" },
+              { label: "Total Orders", value: totalOrders.toLocaleString(), icon: <Package size={22} />, color: "bg-[#2382AA] text-white" },
+              { label: "Avg Order Value", value: `Rs. ${Math.round(avgOrderValue).toLocaleString()}`, icon: <BarChart2 size={22} />, color: "bg-gradient-to-br from-[#2382AA] to-[#4F46E5] text-white" },
+              { label: "Best Day Revenue", value: bestDay ? `Rs. ${bestDay.revenue.toLocaleString()}` : "—", icon: <Trophy size={22} />, color: "bg-gradient-to-br from-green-500 to-emerald-600 text-white" },
             ].map(c => (
               <div key={c.label} className={`rounded-2xl p-5 shadow-md ${c.color}`}>
-                <div className="text-2xl mb-2">{c.icon}</div>
+                <div className="mb-2 opacity-90">{c.icon}</div>
                 <div className="text-xl font-bold">{c.value}</div>
                 <div className="text-sm font-medium opacity-80 mt-0.5">{c.label}</div>
               </div>
